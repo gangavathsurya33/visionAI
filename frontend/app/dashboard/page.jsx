@@ -16,7 +16,9 @@ import {
   X,
 } from 'lucide-react'
 
-const API_URL = ''
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  'https://visionai-production-5ed5.up.railway.app'
 
 const DOCTOR_APP_URL =
   process.env.NEXT_PUBLIC_DOCTOR_APP_URL ||
