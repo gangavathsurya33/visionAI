@@ -25,7 +25,7 @@ import {
 
 const API_URL =
   process.env.NEXT_PUBLIC_MAIN_BACKEND_URL ||
-  'http://localhost:8000'
+  'https://visionai-production-5ed5.up.railway.app'
 
 const INITIAL_MESSAGE = {
   id: 'initial',
