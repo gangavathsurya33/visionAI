@@ -1,0 +1,14 @@
+{
+  "name": "mednexus-master-hub",
+  "version": "1.0.0",
+  "scripts": {
+    "server": "cd backend && env\\Scripts\\python.exe -m uvicorn main:app --reload --port 8000",
+    "client": "cd frontend && npm run dev",
+    "doctor-server": "cd doctor\\backend && .venv\\Scripts\\python.exe -m uvicorn main:app --reload --port 8001",
+    "doctor-client": "cd doctor && npm run dev -- --port 3001",
+    "dev": "concurrently -k -n \"MAIN-BACKEND,MAIN-FRONTEND,DOCTOR-BACKEND,DOCTOR-FRONTEND\" \"npm run server\" \"npm run client\" \"npm run doctor-server\" \"npm run doctor-client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
