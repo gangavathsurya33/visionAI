@@ -1,1 +1,0 @@
-{"experimentalServices":{"mednexus-api":{"entrypoint":"backend/main.py","routePrefix":"api"}}}
