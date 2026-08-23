@@ -26,14 +26,14 @@ export default function OAuthSuccessPage() {
           return
         }
 
-        router.replace('/login')
+        router.replace('/')
       } catch (error) {
         console.error(
           'OAuth authentication check failed:',
           error
         )
 
-        router.replace('/login')
+        router.replace('/')
       }
     }
 
