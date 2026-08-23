@@ -22,7 +22,7 @@ const API_URL =
 
 const DOCTOR_APP_URL =
   process.env.NEXT_PUBLIC_DOCTOR_APP_URL ||
-  'http://localhost:3001'
+  'https://mednexus-doctor-9a233gqcf-gangavathsurya33s-projects.vercel.app/'
 
 const features = [
   {
