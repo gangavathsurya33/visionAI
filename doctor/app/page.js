@@ -9,8 +9,7 @@ const MAIN_APP_URL =
   'http://localhost:3000'
 
 const DOCTOR_API_URL =
-  process.env.NEXT_PUBLIC_DOCTOR_API_URL ||
-  'https://doctor-backend-production-0008.up.railway.app'
+  'https://mednexus-doctor-k02g6gky5-gangavathsurya33s-projects.vercel.app'
 
 
 import ReactMarkdown from 'react-markdown'
