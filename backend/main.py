@@ -93,14 +93,16 @@ BACKEND_URL = os.getenv(
 # ENVIRONMENT
 # ============================================================
 
-ENVIRONMENT = os.getenv(
-    "ENVIRONMENT",
-    "development",
-)
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development").strip().lower()
 
-IS_PRODUCTION = (
-    ENVIRONMENT == "production"
-)
+IS_PRODUCTION = ENVIRONMENT == "production"
+
+if IS_PRODUCTION:
+    COOKIE_SECURE = True
+    COOKIE_SAMESITE = "none"
+else:
+    COOKIE_SECURE = False
+    COOKIE_SAMESITE = "lax"
 
 
 # ============================================================
@@ -401,8 +403,8 @@ async def google_callback(
         key="access_token",
         value=access_token,
         httponly=True,
-        secure=IS_PRODUCTION,
-        samesite="lax",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
         max_age=JWT_EXPIRE_MINUTES * 60,
         path="/",
     )
@@ -532,8 +534,8 @@ async def register(
         key="access_token",
         value=token,
         httponly=True,
-        secure=IS_PRODUCTION,
-        samesite="lax",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
         max_age=JWT_EXPIRE_MINUTES * 60,
         path="/",
     )
@@ -683,8 +685,8 @@ async def github_callback(
         key="access_token",
         value=access_token,
         httponly=True,
-        secure=IS_PRODUCTION,
-        samesite="lax",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
         max_age=JWT_EXPIRE_MINUTES * 60,
         path="/",
     )
@@ -744,9 +746,9 @@ async def login(
     response.set_cookie(
         key="access_token",
         value=token,
-        httponly=True,
-        secure=IS_PRODUCTION,
-        samesite="lax",
+        hsecure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
+        samesite="none",
         max_age=JWT_EXPIRE_MINUTES * 60,
         path="/",
     )
@@ -767,18 +769,17 @@ async def login(
 # ============================================================
 
 @app.post("/api/auth/logout")
-async def logout(
-    response: Response,
-):
-
+async def logout(response: Response):
     response.delete_cookie(
         key="access_token",
         path="/",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
     )
 
     return {
         "success": True,
-        "message": "Logged out successfully.",
+        "message": "Logged out successfully."
     }
 
 
@@ -1916,6 +1917,14 @@ async def health():
     }
 
 
+@app.get("/api/debug/env")
+async def debug_env():
+    return {
+        "environment_raw": repr(ENVIRONMENT),
+        "is_production": IS_PRODUCTION,
+        "frontend_url_raw": repr(FRONTEND_URL),
+        "backend_url_raw": repr(BACKEND_URL),
+    }
 # ============================================================
 # RUN DIRECTLY
 # ============================================================
