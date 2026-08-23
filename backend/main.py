@@ -80,12 +80,12 @@ JWT_EXPIRE_MINUTES = 60 * 24
 
 FRONTEND_URL = os.getenv(
     "FRONTEND_URL",
-    "http://localhost:3000",
+    "https://vision-ai-six-gilt.vercel.app",
 )
 
 BACKEND_URL = os.getenv(
     "BACKEND_URL",
-    "http://localhost:8000",
+    "https://visionai-production-5ed5.up.railway.app",
 )
 
 
@@ -531,14 +531,14 @@ async def register(
     )
 
     response.set_cookie(
-        key="access_token",
-        value=token,
-        httponly=True,
-        secure=COOKIE_SECURE,
-        samesite=COOKIE_SAMESITE,
-        max_age=JWT_EXPIRE_MINUTES * 60,
-        path="/",
-    )
+    key="access_token",
+    value=token,
+    httponly=True,
+    secure=COOKIE_SECURE,
+    samesite=COOKIE_SAMESITE,
+    max_age=JWT_EXPIRE_MINUTES * 60,
+    path="/",
+)
 
     return {
         "success": True,
@@ -744,13 +744,14 @@ async def login(
     )
 
     response.set_cookie(
-        key="access_token",
-        value=token,
-        hsecure=COOKIE_SECURE,
-        samesite=COOKIE_SAMESITE,
-        max_age=JWT_EXPIRE_MINUTES * 60,
-        path="/",
-    )
+    key="access_token",
+    value=token,
+    httponly=True,
+    secure=COOKIE_SECURE,
+    samesite=COOKIE_SAMESITE,
+    max_age=JWT_EXPIRE_MINUTES * 60,
+    path="/",
+)
 
     return {
         "success": True,

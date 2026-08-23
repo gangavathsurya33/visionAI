@@ -8,6 +8,10 @@ const MAIN_APP_URL =
   process.env.NEXT_PUBLIC_MAIN_APP_URL ||
   'http://localhost:3000'
 
+const DOCTOR_API_URL =
+  process.env.NEXT_PUBLIC_DOCTOR_API_URL ||
+  'http://localhost:3001'
+
 import ReactMarkdown from 'react-markdown'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
@@ -644,7 +648,7 @@ function StageTwo({
 
     try {
       const res = await fetch(
-        '/api/consultation',
+    `${DOCTOR_API_URL}/consultation`,
         {
           method: 'POST',
           headers: {
@@ -1665,7 +1669,7 @@ export default function Page() {
 
     try {
       const res = await fetch(
-        '/api/history',
+        '/history',
         {
           headers: {
             'x-mednexus-client':
@@ -1780,7 +1784,7 @@ export default function Page() {
     }
 
     await fetch(
-      '/api/history',
+      '/history',
       {
         method: 'POST',
 
@@ -1825,7 +1829,7 @@ export default function Page() {
             )
           ) {
             await fetch(
-              '/api/history',
+              '/history',
               {
                 method: 'DELETE',
 
