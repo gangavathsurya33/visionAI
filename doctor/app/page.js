@@ -12,6 +12,7 @@ const DOCTOR_API_URL =
   process.env.NEXT_PUBLIC_DOCTOR_API_URL ||
   'http://localhost:3001'
 
+
 import ReactMarkdown from 'react-markdown'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
@@ -1668,8 +1669,7 @@ export default function Page() {
     setLoadingHistory(true)
 
     try {
-      const res = await fetch(
-        '/history',
+      const res = await fetch(`${DOCTOR_API_URL}/history`, 
         {
           headers: {
             'x-mednexus-client':
