@@ -748,7 +748,6 @@ async def login(
         value=token,
         hsecure=COOKIE_SECURE,
         samesite=COOKIE_SAMESITE,
-        samesite="none",
         max_age=JWT_EXPIRE_MINUTES * 60,
         path="/",
     )
