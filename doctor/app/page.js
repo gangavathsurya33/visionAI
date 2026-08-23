@@ -10,7 +10,7 @@ const MAIN_APP_URL =
 
 const DOCTOR_API_URL =
   process.env.NEXT_PUBLIC_DOCTOR_API_URL ||
-  'http://localhost:3001'
+  'https://doctor-backend-production-0008.up.railway.app'
 
 
 import ReactMarkdown from 'react-markdown'
